@@ -1,0 +1,40 @@
+{% extends   'main/base.html' %}
+{% block title %}
+News
+{% endblock %}
+{% block content %}
+ {% for el in news %}
+<div  style="border-radius:90px;width:95%"  class="p-3= mb-2 bg-success text-white text-center">
+         <br> <h3>{{ el.title }}</h3> <br>
+                <p>{{ el.news }}</p><br>
+        {% if user.is_superuser %}
+    <a href="{% url 'news-update' el.id %} ">
+        <button class="btn btn-primary">Жаңалықты жаңарту</button>
+    </a>
+<span style="width:30px">|    |</span>
+    <a href="{% url 'news-delete' el.id %} ">
+        <button class="btn btn-danger">Жаңалықты жою</button>
+    </a>
+      <br>
+
+
+    <!--<a href="{{ p.get_absolute_url }}" role="button"  class="btn btn-success">Читить пост</a>-->
+    {%else%}
+    {%if user.is_active%}
+     <a href="{% url 'news-delete' el.id %} ">
+        <button class="btn btn-danger">Жаңалықты жою</button>
+    </a>
+        <br>
+
+
+  {%else%}
+<h2>У вас нет прав чтобы изменить данные</h2>
+{%endif%}
+  {%endif%}
+   <br>
+
+</div>
+<hr>
+ {% endfor %}
+
+{% endblock %}

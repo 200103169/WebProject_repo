@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <title>{% block title %}{% endblock %}</title>
+
+</head>
+<body  >
+<div style="display:flex;background-color: #3e00af;"><div style="margin-left:50px" class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://yandex-images.clstorage.net/cTR97d415/cb78bbb3U/a5s4AvUMtCjbe6t50IJVir-zvlGFJ-2LOQ1EvDOpo_zGz0UkI8ob49dWy-8Takz-j8XH6p7Ae2iTHQIOkeHVpSqGZQPFYM0U83-rdeSmOa6jn55tpTe9lzBsGNAjkIaJi-pVCCpjhidX03tev9rZFj-0hrfexA5EuhXy-qRgkOSnl6xKsQRZjH8vVslwMqkuT4IacRlKhXplCb0IK5iHqV-adOXah2Yf5xvLen_28e5jYMJL9viznIr5ymcI-ER8Syu4fmUcMUDr29ZtkOJ1tuNKzqE5Kn1ydZHd5I-0b4EvwphljiO2uxcLgzI7lhEuz7CeR5Kcc7wCMUrDMKi8iMdfEOLJEOGARy-20SA-VY5zZs5lre45ElWlDQyb5N95d25ARfYTYqvjz89mb055lqtE1rN6FE_M2sUy48y4jMi7E3SCIZC1KDPfrgUEFl1aoxqOoVGygX5hrX18xxTrYY86XBl60ybLM0cjblfiVY7DdD4bRghfuA7hxsegCGREy8f4nrVIwTC3y4bNOJZpDot2QkU1WukqwX3xCJMQ26HHukip8n8SHzNX087b0nWi5xieI4pksxiK3SIzgOig5I-rWGpZVCV4R6NuXage6Z4Hnp5FVRbhMpGhQWi_MJdBwzJIsYrDMuvLRxMmv6ql-uNwai-qhC_UfrUGC7Bo1My3X4jWaVRdnHt_Ysmwwnmew9rOuVVucfZNPW3sc_D_cUeW2K12p347a7tL0i-aVa5LtEJTCpA3bKK1WoMEFDDAY5OsRm1A6TTDV1LxDFZRuhvqNoH1QtWOWaUR4AfAi8n3mrSxLvfiYwO7x95Xlq0qM4yWl6Z4B1wu2U7DiDgcXH9LHEJhgPWwN1umkajS-b57ippRmdKNBqWFCYhrNAtpm1KIldarGvtny9dyk9ZtApuQBleOnI8kOqXKkzBwyPTD8yxyzYyZeDvPOn28MikKw2rSud3m_b4ZnUFskxRQ" alt="" width="82" height="82" class="rounded-circle me-2">
+        <strong>Profil</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="login">Sign in</a></li>
+        <li><a class="dropdown-item" href="admin">admin-site</a></li>
+        <li><a class="dropdown-item" href="about">about</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="login">Sign out: <br>  {{user.username}}</a></li>
+      </ul>
+
+
+    </div></div>
+
+
+<div class="css" style=" display:flex;;">
+<div class="flex-shrink-0 p-3"
+         style="width: 280px;background-color:#3e00af">
+<ul style="color:white">
+    <li>{{user.username}} :<br>
+Some representative placeholder content, with some information about this user. Imagine this being some sort of status update, perhaps?</li>
+</ul>
+    </div>
+
+
+    <div style="width:1700px;">
+
+
+
+        <div style="height:100%;width:100%; border-style: solid;border-radius:10px">
+            <div style="margin-left:50px;margin-top:30px; bbackground-color: white">{% block content %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
+<div class="flex-shrink-0 p-3"
+         style="width: 280px;background-color:#3e00af">
+
+        <ul style="margin-left:30px;" class="list-unstyled ps-0">
+
+
+
+            <li class="border-top my-3"></li>
+            <li class="mb-1">
+                {% if user.is_superuser %}
+                <a href="/insert">
+                    <button style="color:white"  class="btn btn-toggle align-items-center rounded collapsed"
+                            data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                      Бүгінгі Жұмыс<br> жоспарын енгізу
+                    </button>
+                </a> <a href="/contact">
+                <button style="color:white" class="btn btn-toggle align-items-center rounded collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                    Хаттамма жіберу
+                </button>
+            </a>
+            <li class="mb-1">
+                <a  href="{%url 'news'%} ">
+                    <button style="color:white" class="btn btn-toggle align-items-center rounded collapsed">
+                       Жұмыс жаңалығын енгізу
+                    </button>
+                </a>
+            </li>
+            <li class="mb-1">
+                <a href="/upload">
+                    <button style="color:white"class="btn btn-toggle align-items-center rounded collapsed">Өтінішті жіберу
+                    </button>
+                </a>
+
+
+            </li>
+
+
+            <!--<a href="{{ p.get_absolute_url }}" role="button"  class="btn btn-success">Читить пост</a>-->
+            {%else%}
+            {% if user.is_staff %}
+            <li><a href="/news">
+                <button class="btn btn-toggle align-items-center rounded collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                    Күн тәртібі
+                </button>
+            </a></li>
+            </a> <a href="/contact">
+            <button class="btn btn-toggle align-items-center rounded collapsed"
+                    data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                хаттама толтыру
+            </button>
+        </a>
+            <a href="/upload">
+                <button class="btn btn-toggle align-items-center rounded collapsed">Өтінішті енгізу
+                </button>
+            </a>
+
+            {% else %}
+            <li class="mb-1">
+                <a href="https://www.booking.com/searchresults.ru.html?aid=1161916;label=yandex-dsa-XUG5nbjnOLuzFCsU%2AI1u7w;sid=2904937dcff550cc5ec77cb666b69551;city=-2334218;expand_sb=1;highlighted_hotels=288131;hlrd=no_dates;keep_landing=1;redirected=1;source=hotel&room1=A,A,;">
+                    <button class="btn btn-toggle align-items-center rounded collapsed">
+                        About Company
+                    </button>
+                </a>
+                <a href="/login">
+                    <button class="btn btn-toggle align-items-center rounded collapsed">
+                        sign in to SuperUser
+                    </button>
+                </a>
+
+            </li>
+
+            {% endif %}
+            {% endif %}
+
+
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+</body>
+</html>
+
